@@ -18,3 +18,18 @@ class ProfileAvatarUpdate(forms.ModelForm):
 
         model = Profile
         fields = ['image']
+
+
+class ProfileEdit(forms.ModelForm):
+
+    class Meta:
+
+        model = User
+        fields = ['username', 'first_name', 'email']
+
+class PostForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Post
+        fields = ['image', 'description']

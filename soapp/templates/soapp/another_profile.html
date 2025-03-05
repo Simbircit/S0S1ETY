@@ -2,24 +2,12 @@
 {%block title%}{{request.user.username}}{%endblock%}
 {%block content%}
 <main>
-    <a href="{%url 'password_change_form'%}">Password_change</a>
-
     <div>
-        <h2>{{request.user.username}}</h2>
-        <img src="{{request.user.profile.image.url}}" class="profile_img">
+        <h2>{{profile_obj.user.username}}</h2>
+        <img src="{{profile_obj.image.url}}" class="profile_img">
     </div>
-    <form method="post" enctype="multipart/form-data">
-        {%csrf_token%}
-        {{avatar_form}}
-        <button type="submit">Сменить</button>
-    </form>
-    <form method="post" enctype="multipart/form-data">
-        {%csrf_token%}
-        {{profile_form}}
-        <button type="submit">Сменить</button>
-    </form>
     <section>
-        <h2>Ваши П0СТЫ</h2>
+        <h2>П0СТЫ {{profile_obj.user.username}}</h2>
         {%for post in posts%}
         <a href="{%url 'post' post.id%}">
             <div class="post">

@@ -2,11 +2,34 @@
 {%block title%}WALL{%endblock%}
 {%block content%}
 <main>
-    <section>
-        <h2>Все П0СТЫ</h2>
-    </section>
-    <section>
-        <h2>Ваши П0СТЫ</h2>
-    </section>
+    <div class="posts">
+        <section>
+            <h2>Все П0СТЫ</h2>
+            {%for post in posts%}
+            <a href="{%url 'post' post.id%}">
+                <div class="post">
+                    <img src="{{post.image.url}}" class="post_image">
+                    <p class="description">{{post.description|truncatewords:10}}</p>
+                    <h3><a href="{%url 'another_profile' post.author%}">{{post.author}}</a> {{post.likes.count}}
+                        <a href="{%url 'like_post' post.id%}">
+                            {%if user in post.likes.all%}
+                            <img src="/static/images/FulLike.png" alt="" class="like">
+                            {%else%}
+                            <img src="/static/images/Like.png" alt="" class="like">
+                            {%endif%}
+                        </a>
+                        {%if user == post.author%}
+                        <a href="{%url 'post_delete' post.id%}">
+                            <img src="/static/images/x.png" alt="" class="like">
+                        </a>
+                        {%endif%}
+                    </h3>
+                </div>
+            </a>
+            {%endfor%}
+        </section>
+        <section>
+        </section>
+    </div>
 </main>
 {%endblock%}
