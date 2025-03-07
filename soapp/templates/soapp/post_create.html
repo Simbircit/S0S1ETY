@@ -1,0 +1,12 @@
+{%extends 'soapp/base.html'%}
+{%block title%}login{%endblock%}
+{%block content%}
+<main>
+    <h1>З0п0лните Ф0рму</h1>
+    <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{form}}
+        <button type="submit">Создать</button>
+    </form>
+</main>
+{%endblock%}
