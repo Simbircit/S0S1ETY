@@ -3,8 +3,8 @@
 {%block content%}
 <main>
     <div class="posts">
-        <section>
-            <h2>Все П0СТЫ</h2>
+        <h2>Все П0СТЫ</h2>
+        <section class="post_section">
             {%for post in posts%}
             <a href="{%url 'post' post.id%}">
                 <div class="post">
