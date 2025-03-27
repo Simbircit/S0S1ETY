@@ -1,0 +1,21 @@
+{%extends 'soapp/base.html'%}
+{%block content%}
+<h1>Catalog</h1>
+<ul>
+    {%for product in products%}
+    <li class="post_post">
+        <img src="{{product.image.url}}" alt="" class="post_image">
+        <h2>{{product.name}}</h2>
+        <p>{{product.description|truncatechars:30}}</p>
+        <p>Price: {{product.price}}</p>
+        <form action="{%url 'catalog:add_to_cart' product.id%}" method="post" class="buy_form">
+            {%csrf_token%}
+            <button type="submit" class="product_button">add to cart</button>
+        </form>
+    </li>
+    {%endfor%}
+</ul>
+<p>Total Price: {{total_price}}</p>
+<a href="{%url 'catalog:view_cart'%}">to Cart</a>
+<h2></h2>
+{%endblock%}

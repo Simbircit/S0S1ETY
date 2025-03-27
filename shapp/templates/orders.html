@@ -1,0 +1,25 @@
+{%extends 'soapp/base.html'%}
+{%block content%}
+<h1>Orders</h1>
+<ul>
+    {%if orders%}
+    {%for order in orders%}
+    <li>
+        <h2>Order N{{order.id}}</h2>
+        <p>Date {{order.created}}</p>
+        <p>Price: {{order.total_price}}</p>
+        <ul>
+            {%for item in order.items.all%}
+            <p>{{item.product.name}} N{{item.quantity}} Price: {{item.price}}</p>
+            {%endfor%}
+        </ul>
+    </li>
+    {%endfor%}
+    {%else%}
+    <p>U have no orders</p>
+    {%endif%}
+</ul>
+<p>Total Price: {{total_price}}</p>
+<a href="{%url 'catalog:view_cart'%}">to Cart</a>
+<h2></h2>
+{%endblock%}

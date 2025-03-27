@@ -1,0 +1,27 @@
+{%extends 'soapp/base.html'%}
+{%block content%}
+<h1>Cart</h1>
+<ul>
+    {%for item in cart_items%}
+    <li>
+        <h2>{{item.product.name}}</h2>
+        <p>Quantity {{item.quantity}}</p>
+        <p>Price: {{item.product.price}}</p>
+        <h2>
+            <a href="{%url 'catalog:add_to_cart2' item.product.id%}">+</a>
+            <a href="{%url 'catalog:remove_one_from_cart' item.id%}">-</a>
+            <a href="{%url 'catalog:remove_from_cart' item.id%}">x</a>
+            <a href="{%url 'catalog:clear_cart'%}">clear</a>
+        </h2>
+    </li>
+    {%endfor%}
+</ul>
+<p>Total Price: {{total_price}}</p>
+<a href="{%url 'catalog:product_list'%}">to Catalog</a>
+{%if cart_items%}
+<form action="{%url 'catalog:checkout'%}" method="post" class="buy_form">
+    {%csrf_token%}
+    <button type="submit" class="product_button">Create Order</button>
+</form>
+{%endif%}
+{%endblock%}
